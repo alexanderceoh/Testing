@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "E870081ADE7D0BCAF06CA978E86945DC55194020",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "4AD5C68ADA8E2A70504DCFC5949E690EC44EA216" : 0,
+    "E870081ADE7D0BCAF06CA978E86945DC55194020" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "7697EA3C-09C4-4AA8-8876-CA7E33BF1869",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "4AD5C68ADA8E2A70504DCFC5949E690EC44EA216" : "",
+    "E870081ADE7D0BCAF06CA978E86945DC55194020" : "Testing\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Testing",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Testing.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/alexanderceoh\/WenderlichTutorials.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4AD5C68ADA8E2A70504DCFC5949E690EC44EA216"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/alexanderceoh\/Testing.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E870081ADE7D0BCAF06CA978E86945DC55194020"
+    }
+  ]
+}

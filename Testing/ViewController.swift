@@ -11,11 +11,17 @@ import Alamofire
 
 class ViewController: UIViewController {
     
+    var finishedEvents: AnyObject?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         Networking.getEventsNearby()
-        
+//        Networking.getEventsNearby { (returnedInfo) -> () in
+//            self.finishedEvents = returnedInfo
+//            print(self.finishedEvents)
+//        }
+//        
         
     }
     

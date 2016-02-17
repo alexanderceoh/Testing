@@ -16,9 +16,10 @@ final class Networking {
     class func getEventsNearby() {
         
         Alamofire.request(.GET, "http://api.jambase.com/events", parameters: ["zipCode": "95128", "page": "0", "api_key": ""]).responseCollection { (response: Response<[Event], NSError>) -> Void in
-//            print(response.result.value)
+
+            print(response.result.value)
+//            completion(returnedInfo: response.result.value)
             
-            print(response.result.debugDescription)
         }
     }
     
@@ -28,30 +29,36 @@ final class Event: ResponseObjectSerializable, ResponseCollectionSerializable {
     
     let ticketUrl: String
     let venue: Venue
-    var artists: [Artist]
+    let artists: [Artist]
     let date: String
     
-    required init(response: NSHTTPURLResponse, representation: AnyObject) {
+    init?(response: NSHTTPURLResponse, representation: AnyObject) {
         self.ticketUrl = representation.valueForKeyPath("TicketUrl") as! String
         self.venue = Venue(response:response, representation: representation.valueForKeyPath("Venue")!)
         self.date = representation.valueForKeyPath("Date") as! String
-        self.artists = []
+        self.artists = Artist.collection(response: response, representation: representation.valueForKeyPath("Artists")!)
+    }
+    
+    static func collection(response response: NSHTTPURLResponse, representation: AnyObject) -> [Event] {
         
-        for artistRep in representation.valueForKeyPath("Artists") as! [AnyObject]{
-            self.artists.append(Artist(response: response, representation: artistRep))
+        var events: [Event] = []
+        
+        print(representation)
+        
+        if let representationss = representation as? [String: AnyObject] {
+            
+            if let representations = (representationss["Events"]) as? [[String: AnyObject]] {
+                
+                for eventRepresentation in representations {
+                    if let event = Event(response: response, representation: eventRepresentation) {
+                        events.append(event)
+                    }
+                }
+                
+            }
         }
-    }
-    
-    class func collection(response response: NSHTTPURLResponse, representation: AnyObject) -> [Event] {
-        var events:[Event] = []
-        for eventsRep in representation.valueForKeyPath("Events") as! [AnyObject] {
-            events.append(Event(response: response, representation: eventsRep))
-        }
+        
         return events
-    }
-    
-    func toDic() -> Dictionary<String,AnyObject> {
-        return ["ticketURL": self.ticketUrl, "venue":self.venue, "artists":self.artists, "date":self.date]
     }
     
     
@@ -60,8 +67,23 @@ final class Event: ResponseObjectSerializable, ResponseCollectionSerializable {
 final class Artist: ResponseObjectSerializable {
     let name: String
     
-    required init(response: NSHTTPURLResponse, representation: AnyObject) {
+    init?(response: NSHTTPURLResponse, representation: AnyObject) {
         self.name = representation.valueForKeyPath("Name") as! String
+    }
+    
+    class func collection(response response: NSHTTPURLResponse, representation: AnyObject) -> [Artist] {
+        
+        var artists: [Artist] = []
+        
+        if let representation = representation as? [[String: AnyObject]] {
+            for artistRepresentation in representation {
+                if let event = Artist(response: response, representation: artistRepresentation) {
+                    artists.append(event)
+                }
+            }
+        }
+        
+        return artists
     }
 }
 
